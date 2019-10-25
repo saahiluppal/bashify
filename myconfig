@@ -18,6 +18,6 @@ else
 fi
 
 
-printf "%*s\n" $(((${#title}+$COLUMNS)/2)) "$title"
+printf "%*s\n" $(((${#title}+$COLUMNS)/2+5)) "$title"
 
 
