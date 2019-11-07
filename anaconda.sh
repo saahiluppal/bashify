@@ -10,10 +10,12 @@ case "$VAR" in
         echo "Downloading Anaconda Distribution"
         wget https://repo.anaconda.com/archive/Anaconda3-2019.07-Linux-x86_64.sh
         bash Anaconda3-2019.07-Linux-x86_64.sh
-	source $HOME/.bashrc
-	conda activate
+        cd
+	    source $HOME/.bashrc
+        cd
+	    conda activate
         conda config --set auto_activate_base false
-	mv Anaconda3-2019.07-Linux-x86_64.sh $HOME/Downloads/;;
+	    mv $HOME/linux_sup/Anaconda3-2019.07-Linux-x86_64.sh $HOME/Downloads/;;
     "m" )
         echo "Installation for Anaconda"
         echo "1. MacOS"
