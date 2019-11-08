@@ -1,7 +1,4 @@
-weather() {  
-    curl -s "wttr.in/$1?m1"
-}
-
+# ------- Greetings -------------
 
 COLUMNS=$(tput cols) 
 
@@ -22,4 +19,17 @@ yes "$(tput setaf 6)=$(tput sgr 0)" | head -n$(($(tput cols))) | tr -d '\n'
 printf "%*s\n" $(((${#title}+$COLUMNS)/2+5)) "$title"
 yes "$(tput setaf 6)=$(tput sgr 0)" | head -n$(($(tput cols))) | tr -d '\n'
 
+# -----------------------------
 
+# Custom Functions -----------
+
+weather() {
+    curl -s "wttr.in/$1?m1"
+}
+
+repo() {
+    chromium repo.new &>/dev/null &
+    disown
+}
+
+# -----------------------------
