@@ -21,7 +21,13 @@ yes "$(tput setaf 6)=$(tput sgr 0)" | head -n$(($(tput cols))) | tr -d '\n'
 
 # -----------------------------
 
-# Custom Functions -----------
+# Custom Aliases --------------
+
+alias push='git push -u origin master'
+
+# -----------------------------
+
+# Custom Functions ------------
 
 weather() {
     curl -s "wttr.in/$1?m1"
