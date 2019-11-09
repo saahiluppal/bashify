@@ -1,0 +1,24 @@
+notify-send "Process Started: Kindly Follow the instructions"
+
+TIME=0
+while true;
+do
+        sleep 1
+        TIME=$(($TIME+1))
+        if [ $(($TIME%3600)) -eq 0 ] 
+        then 
+                notify-send "Go and wash your eyes."
+		espeak "Go and wash your eyes"
+		sleep 1m
+		notify-send "Okay back to work"
+		espeak "Okay, back to work"
+        elif [ $(($TIME%1200)) -eq 0 ]
+	then
+                notify-send "Remember 20-20-20 Rule"
+		espeak "Look away"
+		sleep 20
+		espeak "Okay, Back to work"
+		notify-send "Okay, back to work"
+        fi
+done
+
