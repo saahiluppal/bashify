@@ -8,11 +8,11 @@ Please Select:
     3. Display Home Space Utilization
     0. Quit
 "
-read -p "Enter selection [0-3] > "
+read -p "Enter Selection [0-3] > "
 
 if [[ $REPLY =~ ^[0-3]$ ]]; then
 	if [[ $REPLY == 0 ]]; then
-		echo "Program terminated."
+		echo "Program Terminated."
 		exit
 	fi
 	if [[ $REPLY == 1 ]]; then
