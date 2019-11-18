@@ -28,6 +28,6 @@ sudo dnf install make
 make # -j4 (If required)
 sudo make install
 
-echo "Successfully installed BTC_Core_NOde"
+echo "Successfully installed BTC_Core_Node"
 
 
