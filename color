@@ -15,6 +15,6 @@ DEFAULT='\033[0m'
 COLORS=($DARKGRAY $RED $LIGHTRED $GREEN $YELLOW $BLUE $PURPLE $LIGHTPURPLE $CYAN $WHITE )
 
 for c in "${COLORS[@]}";do
-    printf "\r $c LOVE $DEFAULT "
+    printf "\r $c BASH IS GREAT $DEFAULT "
     sleep 1
 done
