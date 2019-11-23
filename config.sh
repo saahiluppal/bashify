@@ -34,7 +34,7 @@ weather() {
 }
 
 repo() {
-    chromium repo.new &>/dev/null &
+    firefox repo.new &>/dev/null &
     disown
 }
 
