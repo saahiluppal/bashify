@@ -1,4 +1,4 @@
-# ------- Greetings -------------
+## ------- Greetings -------------
 
 COLUMNS=$(tput cols) 
 
@@ -14,20 +14,20 @@ else
     title="$(tput bold)$(tput setaf 3)GOOD MORNING$(tput sgr 0)"
 fi
 
+## if you want greeting uncooment following 3 lines
+#yes "$(tput setaf 6)=$(tput sgr 0)" | head -n$(($(tput cols))) | tr -d '\n'
+#printf "%*s\n" $(((${#title}+$COLUMNS)/2+5)) "$title"
+#yes "$(tput setaf 6)=$(tput sgr 0)" | head -n$(($(tput cols))) | tr -d '\n'
 
-yes "$(tput setaf 6)=$(tput sgr 0)" | head -n$(($(tput cols))) | tr -d '\n'
-printf "%*s\n" $(((${#title}+$COLUMNS)/2+5)) "$title"
-yes "$(tput setaf 6)=$(tput sgr 0)" | head -n$(($(tput cols))) | tr -d '\n'
+## -----------------------------
 
-# -----------------------------
-
-# Custom Aliases --------------
+## Custom Aliases --------------
 
 alias push='git push -u origin master'
 
-# -----------------------------
+## -----------------------------
 
-# Custom Functions ------------
+## Custom Functions ------------
 
 weather() {
     curl -s "wttr.in/$1?m1"
@@ -38,4 +38,4 @@ repo() {
     disown
 }
 
-# -----------------------------
+## -----------------------------
