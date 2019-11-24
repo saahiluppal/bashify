@@ -1,33 +1,49 @@
 #!/usr/bin/bash
 
-echo "Warning: This is for RPM based Distributions only;"
-echo "Installing Dependencies..."
+read -p "Debian_Based/Fedora [D/f]" VAR
+VAR=${VAR:-'D'}
+shopt -s nocasematch
 
-sudo dnf install autoconf automake libtool gcc-c++ libdb4-cxx-devel boost-devel openssl-devel libevent-devel
+case "$VAR" in 
+    "d" )
+        echo "Warning: This is for Debain based Distributions only;"
+        echo "Installing Dependencies..."
+        echo "Yet to implement"
+        ;;
 
-echo "Going Home"
+    "f" )
+        echo "Warning: This is for RPM based Distributions only;"
+        echo "Installing Dependencies..."
 
-cd $HOME
-git clone https://github.com/bitcoin/bitcoin.git
+        sudo dnf install autoconf automake libtool gcc-c++ libdb4-cxx-devel boost-devel openssl-devel libevent-devel
 
-cd bitcoin
-git checkout v0.18.1
-git status
+        echo "Going Home"
 
-echo "Running Autogen"
-./autogen.sh
+        cd $HOME
+        git clone https://github.com/bitcoin/bitcoin.git
 
-sleep 2
+        cd bitcoin
+        git checkout v0.18.1
+        git status
 
-echo "Configuring"
-./configure
+        echo "Running Autogen"
+        ./autogen.sh
 
-# Install make if you don't have
+        sleep 2
 
-sudo dnf install make  
-make # -j4 (If required)
-sudo make install
+        echo "Configuring"
+        ./configure
 
-echo "Successfully installed BTC_Core_Node"
+        # Install make if you don't have
+
+        sudo dnf install make  
+        make # -j4 (If required)
+        sudo make install
+
+        echo "Successfully installed BTC_Core_Node"
+        ;;
+    * ) 
+        echo "Skipping"
+esac
 
 
