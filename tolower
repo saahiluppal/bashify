@@ -11,3 +11,4 @@ else
 fi
 
 tr '[A-Z]' '[a-z]' <$fileName >>small.txt
+echo "Done"
