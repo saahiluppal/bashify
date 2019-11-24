@@ -20,7 +20,7 @@ echo "Running Autogen"
 sleep 2
 
 echo "Configuring"
-./configure --disable-dependency-tracking
+./configure
 
 # Install make if you don't have
 
