@@ -9,7 +9,7 @@ case "$VAR" in
         echo "Warning: This is for Debain based Distributions only;"
         echo "Installing Dependencies..."
 
-        sudo apt install wget autoconf
+        sudo apt install wget autoconf libtool libboost-dev
 
         echo "Going Home"
 
@@ -17,13 +17,16 @@ case "$VAR" in
         git clone https://github.com/bitcoin/bitcoin.git
 
         cd bitcoin
-        git checkout v0.9.5
+        git checkout v0.19.0.1
         git status
 
         echo "Running Autogen"
         ./autogen.sh
 
         sleep 2
+
+        echo "Configuring"
+        ./configure
         ;;
 
     "f" )
@@ -38,7 +41,7 @@ case "$VAR" in
         git clone https://github.com/bitcoin/bitcoin.git
 
         cd bitcoin
-        git checkout v0.9.5
+        git checkout v0.19.0.1
         git status
 
         echo "Running Autogen"
