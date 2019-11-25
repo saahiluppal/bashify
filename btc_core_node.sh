@@ -8,7 +8,17 @@ case "$VAR" in
     "d" )
         echo "Warning: This is for Debain based Distributions only;"
         echo "Installing Dependencies..."
-        echo "Yet to implement"
+
+        sudo apt install wget
+
+        echo "Going Home"
+
+        cd $HOME
+        git clone https://github.com/bitcoin/bitcoin.git
+
+        cd bitcoin
+
+        echo "see checkout"
         ;;
 
     "f" )
