@@ -1,20 +1,20 @@
 #!/usr/bin/bash
 
-read -p "Debian_Based/Fedora [D/f]" VAR
-VAR=${VAR:-'D'}
-shopt -s nocasematch
+read -p "1. Debian\n2. Fedora" VAR
+VAR=${VAR:-1}
+#shopt -s nocasematch
 
-case "$VAR" in 
-    "d" )
+case $VAR in 
+    1 )
         echo "Warning: This is for Debain based Distributions only;"
         echo "Installing Dependencies..."
 
-        sudo apt install wget autoconf libtool libboost-dev libcurl4-openssl-dev libevent-dev
+        sudo apt install wget autoconf libtool libboost* libcurl4-openssl-dev libevent-dev
 
         echo "Going Home"
 
         cd $HOME
-        git clone https://github.com/bitcoin/bitcoin.git
+        #git clone https://github.com/bitcoin/bitcoin.git
 
         cd bitcoin
         git checkout v0.19.0.1
@@ -26,7 +26,7 @@ case "$VAR" in
         sleep 2
 
         echo "Configuring"
-        ./configure
+        ./configure --with-boost-libdir=/usr/lib/x86_64-linux-gnu
 
         make
         sudo make install
@@ -34,7 +34,7 @@ case "$VAR" in
         echo "Successfully installed Bitcoin Core NODE"
         ;;
 
-    "f" )
+    2 )
         echo "Warning: This is for RPM based Distributions only;"
         echo "Installing Dependencies..."
 
