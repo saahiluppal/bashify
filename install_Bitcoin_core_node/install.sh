@@ -1,20 +1,27 @@
 #!/usr/bin/bash
 
-read -p "1. Debian\n2. Fedora" VAR
+echo -e "1. Debian\n2. Fedora"
+read VAR
 VAR=${VAR:-1}
 #shopt -s nocasematch
 
 case $VAR in 
     1 )
+        if which bitcoind >/dev/null; then
+            echo "Already installed";
+            exit 1
+        fi
+
         echo "Warning: This is for Debain based Distributions only;"
         echo "Installing Dependencies..."
 
-        sudo apt install wget autoconf libtool libboost* libcurl4-openssl-dev libevent-dev
+        sudo apt install wget autoconf libtool libboost* libcurl4-openssl-dev libevent-dev libssl-dev
+        bash libdb
 
         echo "Going Home"
 
         cd $HOME
-        #git clone https://github.com/bitcoin/bitcoin.git
+        git clone https://github.com/bitcoin/bitcoin.git
 
         cd bitcoin
         git checkout v0.19.0.1
@@ -26,12 +33,16 @@ case $VAR in
         sleep 2
 
         echo "Configuring"
-        ./configure --with-boost-libdir=/usr/lib/x86_64-linux-gnu
+        ./configure #--with-boost-libdir=/usr/lib/x86_64-linux-gnu
 
         make
         sudo make install
 
-        echo "Successfully installed Bitcoin Core NODE"
+        if which bitcoind >/dev/null; then
+            echo "Successfully installed Bitcoin Core NODE"
+        else
+            echo "Unable to install Bitcoin Core NODE"
+        fi
         ;;
 
     2 )
