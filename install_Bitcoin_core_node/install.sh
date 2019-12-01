@@ -1,5 +1,27 @@
 #!/usr/bin/bash
 
+if which apt >/dev/null; then
+    echo "Package Manager APT found"
+    
+    if which bitcoind > /dev/null; then
+        echo "Already installed";
+        exit 1
+    fi
+
+    echo "Installing Dependencies..."
+
+    sudo apt install wget autoconf libtool libboost* libcurl4-openssl-dev libevent-dev libssl-dev
+    bash libdb
+
+    echo "Going Home"
+
+    cd $HOME
+    git clone https://github.com/bitcoin/bitcoin.git
+
+    cd bitcoin
+    git checkout v0.19.0.1
+    git status
+
 :'
 echo -e "1. Debian\n2. Fedora"
 read VAR
