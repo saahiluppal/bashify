@@ -1,5 +1,6 @@
 #!/usr/bin/bash
 
+:'
 echo -e "1. Debian\n2. Fedora"
 read VAR
 VAR=${VAR:-1}
@@ -68,7 +69,7 @@ case $VAR in
         echo "Configuring"
         ./configure
 
-        # Install make if you don't have
+        # Install make if you dont have
 
         sudo dnf install make  
         make # -j4 (If required)
@@ -81,3 +82,4 @@ case $VAR in
 esac
 
 
+'
