@@ -1,0 +1,7 @@
+#!/usr/bin/bash
+
+if which apt >/dev/null; then
+	echo "APT found"
+elif which dnf >/dev/null; then
+	echo "DNF found"
+fi
