@@ -15,7 +15,7 @@ case "$VAR" in
         cd
 	    conda activate
         conda config --set auto_activate_base false
-	    mv $HOME/linux_sup/Anaconda3-2019.07-Linux-x86_64.sh $HOME/Downloads/
+	    mv $HOME/bashify/Anaconda3-2019.07-Linux-x86_64.sh $HOME/Downloads/
         ;;
     "m" )
         echo "Installation for Anaconda"
