@@ -1,1 +1,1 @@
-<h3>Some simple bash scripts</h3>
+<h3>Some simple shell scripts</h3>
