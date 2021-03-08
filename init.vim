@@ -1,3 +1,5 @@
+" TODO: Migrate entire script into lua
+"
 set exrc
 
 set tabstop=4 softtabstop=4
@@ -70,6 +72,16 @@ nnoremap <silent> <leader>t :FloatermToggle<CR>
 tnoremap <silent> <leader>t <C-\><C-n>:FloatermToggle<CR>
 
 
+" Type :Rc to edit init.vim
+command Rc :e $HOME/.config/nvim/init.vim
+
+" Window resizing made easy
+" nnoremap <silent> <leader>i :vertical resize +2<CR>
+" nnoremap <silent> <leader>o :vertical resize -2<CR>
+" nnoremap <silent> <leader>= :resize +2<CR>
+" nnoremap <silent> <leader>- :resize -2<CR>
+
+
 " LSP Config
 " pyright language server is good enough
 " install it with `npm i -g pyright`
@@ -89,13 +101,13 @@ EOF
 " another completion source instead (Ex: Snippets)
 autocmd BufEnter * lua require'completion'.on_attach()
 
-" Use <Tab> and <S-Tab> as trigger keys to enable or disable popup menu
-imap <tab> <Plug>(completion_smart_tab)
-imap <s-tab> <Plug>(completion_smart_s_tab)
-
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Use <Tab> and <S-Tab> as trigger keys to enable or disable popup menu
+imap <tab> <Plug>(completion_smart_tab)
+imap <s-tab> <Plug>(completion_smart_s_tab)
 
 
 " Tree sitter settings
@@ -139,4 +151,3 @@ nnoremap <silent> <C-h> :call WinMove('h')<CR>
 nnoremap <silent> <C-j> :call WinMove('j')<CR>
 nnoremap <silent> <C-k> :call WinMove('k')<CR>
 nnoremap <silent> <C-l> :call WinMove('l')<CR>
-
