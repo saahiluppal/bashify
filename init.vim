@@ -37,7 +37,8 @@ Plug 'gruvbox-community/gruvbox'
 Plug 'joshdick/onedark.vim'
 
 Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
+"Plug 'nvim-lua/completion-nvim'
+Plug 'hrsh7th/nvim-compe'
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'ryanoasis/vim-devicons'
@@ -57,7 +58,7 @@ call plug#end()
 
 syntax enable
 set termguicolors
-colorscheme onedark
+colorscheme gruvbox
 highlight Normal guibg=none
 
 
@@ -81,6 +82,45 @@ command Rc :e $HOME/.config/nvim/init.vim
 " nnoremap <silent> <leader>= :resize +2<CR>
 " nnoremap <silent> <leader>- :resize -2<CR>
 
+" Autocompletion settings
+" Tab S-Tab completion
+inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Config
+lua << EOF
+require'compe'.setup {
+  enabled = true;
+  autocomplete = true;
+  debug = false;
+  min_length = 1;
+  preselect = 'enable';
+  throttle_time = 80;
+  source_timeout = 200;
+  incomplete_delay = 400;
+  max_abbr_width = 100;
+  max_kind_width = 100;
+  max_menu_width = 100;
+  documentation = true;
+
+  source = {
+    path = true;
+    buffer = true;
+    calc = true;
+    nvim_lsp = true;
+    nvim_lua = true;
+    vsnip = true;
+  };
+}
+EOF
+
+" Mappings
+inoremap <silent><expr> <C-Space> compe#complete()
+inoremap <silent><expr> <CR>      compe#confirm('<CR>')
+inoremap <silent><expr> <C-e>     compe#close('<C-e>')
+inoremap <silent><expr> <C-f>     compe#scroll({ 'delta': +4 })
+inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
+
 
 " LSP Config
 " pyright language server is good enough
@@ -90,24 +130,27 @@ command Rc :e $HOME/.config/nvim/init.vim
 " find where gopls installed and export it in path
 lua << EOF
     -- on_attach is for autocompletion
-    require'lspconfig'.pyright.setup{on_attach=require'completion'.on_attach}
-    require'lspconfig'.gopls.setup{on_attach=require'completion'.on_attach}
+    require'lspconfig'.pyright.setup{}
+    require'lspconfig'.gopls.setup{}
 EOF
 
+" Completion documentation highlight
+highlight link CompeDocumentation NormalFloat
 
-" Autocompletion settings
-" Use completion-nvim in every buffer even if LSP is not enabled
-" It's okay to setup completion without LSP. It will simply use
-" another completion source instead (Ex: Snippets)
-autocmd BufEnter * lua require'completion'.on_attach()
 
-" Use <Tab> and <S-Tab> to navigate through popup menu
-inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" Use <Tab> and <S-Tab> as trigger keys to enable or disable popup menu
-imap <tab> <Plug>(completion_smart_tab)
-imap <s-tab> <Plug>(completion_smart_s_tab)
+"" Autocompletion settings
+"" Use completion-nvim in every buffer even if LSP is not enabled
+"" It's okay to setup completion without LSP. It will simply use
+"" another completion source instead (Ex: Snippets)
+"autocmd BufEnter * lua require'completion'.on_attach()
+"
+"" Use <Tab> and <S-Tab> to navigate through popup menu
+"inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+"inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+"
+"" Use <Tab> and <S-Tab> as trigger keys to enable or disable popup menu
+"imap <tab> <Plug>(completion_smart_tab)
+"imap <s-tab> <Plug>(completion_smart_s_tab)
 
 
 " Tree sitter settings
