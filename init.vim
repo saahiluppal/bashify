@@ -90,27 +90,27 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " Config
 lua << EOF
 require'compe'.setup {
-  enabled = true;
-  autocomplete = true;
-  debug = false;
-  min_length = 1;
-  preselect = 'enable';
-  throttle_time = 80;
-  source_timeout = 200;
-  incomplete_delay = 400;
-  max_abbr_width = 100;
-  max_kind_width = 100;
-  max_menu_width = 100;
-  documentation = true;
+    enabled = true;
+    autocomplete = true;
+    debug = false;
+    min_length = 1;
+    preselect = 'enable';
+    throttle_time = 80;
+    source_timeout = 200;
+    incomplete_delay = 400;
+    max_abbr_width = 100;
+    max_kind_width = 100;
+    max_menu_width = 100;
+    documentation = true;
 
-  source = {
-    path = true;
-    buffer = true;
-    calc = true;
-    nvim_lsp = true;
-    nvim_lua = true;
-    vsnip = true;
-  };
+    source = {
+        path = true;
+        buffer = true;
+        calc = true;
+        nvim_lsp = true;
+        nvim_lua = true;
+        vsnip = true;
+    };
 }
 EOF
 
@@ -129,10 +129,21 @@ inoremap <silent><expr> <C-d>     compe#scroll({ 'delta': -4 })
 " install it with `GO111MODULE=on go get golang.org/x/tools/gopls@latest`
 " find where gopls installed and export it in path
 lua << EOF
-    -- on_attach is for autocompletion
     require'lspconfig'.pyright.setup{}
     require'lspconfig'.gopls.setup{}
 EOF
+
+" LSP mappings
+nnoremap gd :lua vim.lsp.buf.definition()<CR>
+nnoremap gr :lua vim.lsp.buf.references()<CR>
+nnoremap <leader>k :lua vim.lsp.buf.signature_help()<CR>
+nnoremap <leader>wa :lua vim.lsp.buf.add_workspace_folder()<CR>
+nnoremap <leader>wr :lua vim.lsp.buf.remove_workspace_folder()<CR>
+nnoremap <leader>wl :lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>
+nnoremap K  :lua vim.lsp.buf.hover()<CR>
+nnoremap rn :lua vim.lsp.buf.rename()<CR>
+nnoremap [d :lua vim.lsp.diagnostic.goto_prev()<CR>
+nnoremap ]d :lua vim.lsp.diagnostic.goto_next()<CR>
 
 " Completion documentation highlight
 highlight link CompeDocumentation NormalFloat
